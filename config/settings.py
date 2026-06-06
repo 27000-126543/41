@@ -16,7 +16,15 @@ LOGS_DIR = os.path.join(OUTPUT_DIR, 'logs')
 for d in [DATA_DIR, OUTPUT_DIR, REPORTS_DIR, CONTRACTS_DIR, EXPORTS_DIR, LOGS_DIR]:
     os.makedirs(d, exist_ok=True)
 
-DATABASE_PATH = os.path.join(DATA_DIR, 'bidding_system.db')
+DB_TYPE = os.environ.get('DB_TYPE', 'sqlite')
+if DB_TYPE == 'postgresql':
+    DATABASE_URL = os.environ.get(
+        'DATABASE_URL',
+        'postgresql://bidding:bidding123@localhost:5432/bidding_system'
+    )
+else:
+    DATABASE_PATH = os.path.join(DATA_DIR, 'bidding_system.db')
+    DATABASE_URL = f'sqlite:///{DATABASE_PATH}'
 
 WEIGHT_CONFIG = {
     'default': {

@@ -16,7 +16,7 @@ class Config:
     if DB_TYPE == 'postgresql':
         SQLALCHEMY_DATABASE_URI = os.environ.get(
             'DATABASE_URL',
-            'postgresql://postgres:postgres@localhost:5432/bidding_system'
+            'postgresql://bidding:bidding123@localhost:5432/bidding_system'
         )
     else:
         SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'data', 'bidding_system.db')
